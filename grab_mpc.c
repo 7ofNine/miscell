@@ -181,7 +181,7 @@ static int grab_file_with_time_info( const char *url, const char *object_name,
    const char *tname = "/tmp/zzz1";
 #endif
 
-   unlink( tname);
+   _unlink( tname);
    if( grab_file( url, tname))
        return( -1);
    ofile = init_output_file( url, object_name, outfilename, append);
@@ -199,7 +199,7 @@ static int grab_file_with_time_info( const char *url, const char *object_name,
          }
       fclose( ifile);
       }
-   unlink( tname);
+   _unlink( tname);
    fclose( ofile);
    return( 0);
 }
@@ -271,7 +271,7 @@ static int fetch_astrometry_from_mpc( const char *output_filename,
    strcat( url, "&btnG=MPC+Database+Search");
    if( verbose)
       printf( "Grabbing '%s''\n", url);
-   unlink( output_filename);
+   _unlink( output_filename);
    rval = grab_file_with_time_info( url, object_name, output_filename, 0);
    if( !rval && !look_for_link_to_astrometry( output_filename, url2))
       rval = FETCH_OBJECT_NOT_FOUND;
